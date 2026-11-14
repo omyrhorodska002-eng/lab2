@@ -1,6 +1,7 @@
 * {
     box-sizing: border-box;
 }
+
 body {
     margin: 0;
     padding-top: 70px;
@@ -10,7 +11,7 @@ body {
     min-height: 100vh;
 }
 
-/* Фіксоване меню зверху */
+/* Фіксоване меню зверху (Flexbox) */
 nav {
     position: fixed;
     top: 0;
@@ -24,11 +25,13 @@ nav {
     box-shadow: 0 4px 15px rgba(0, 229, 255, 0.2);
     z-index: 1000;
 }
+
 nav a, nav span {
     color: #00e5ff;
     text-decoration: none;
     font-weight: bold;
 }
+
 nav a:hover {
     color: #ffffff;
     text-shadow: 0 0 8px #00e5ff;
@@ -40,7 +43,7 @@ nav a:hover {
     padding: 20px;
 }
 
-/* Блок фото на головній (3 в ряд) */
+/* Блок фото на головній (3 в ряд з Flexbox) */
 .photo-section {
     background: rgba(22, 27, 34, 0.9);
     border-radius: 15px;
@@ -50,19 +53,23 @@ nav a:hover {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
     text-align: center;
 }
+
 .photo-section h2 {
     color: #00e5ff;
     margin-top: 0;
     border-bottom: 1px solid rgba(0, 229, 255, 0.2);
     padding-bottom: 10px;
     margin-bottom: 20px;
+    font-size: clamp(1.5rem, 3vw, 2rem); /* Адаптивний розмір шрифту */
 }
+
 .photo-grid {
     display: flex;
     justify-content: space-between;
     gap: 20px;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Дозволяє карткам переноситися на новий рядок */
 }
+
 .photo-card {
     flex: 1;
     min-width: 280px;
@@ -74,23 +81,29 @@ nav a:hover {
     text-align: center;
     transition: 0.3s;
 }
+
 .photo-card:hover {
     border-color: #00e5ff;
     box-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
 }
+
+/* Гнучкі зображення */
 .photo-card img {
     max-width: 100%;
     height: 150px;
     object-fit: cover;
     border-radius: 6px;
     margin-bottom: 10px;
+    display: block; /* Усуває зайві відступи */
 }
+
 .photo-card a {
     color: #00e5ff;
     text-decoration: none;
     display: block;
     margin-top: 5px;
 }
+
 .photo-card a:hover {
     text-decoration: underline;
 }
@@ -104,6 +117,7 @@ nav a:hover {
     border: 1px solid rgba(0, 229, 255, 0.2);
     overflow: hidden;
 }
+
 .float-img {
     float: left;
     width: 120px;
@@ -131,9 +145,11 @@ form {
     border: 1px solid rgba(0, 229, 255, 0.3);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
 }
+
 h2 {
     color: #00e5ff;
 }
+
 input[type="text"],
 input[type="password"],
 input[type="email"],
@@ -150,17 +166,21 @@ textarea {
     font-size: 14px;
     transition: all 0.3s ease;
 }
+
 input:focus, select:focus, textarea:focus {
     outline: none;
     border-color: #00e5ff;
     box-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
 }
+
 input:not(:placeholder-shown):valid {
     border-color: #238636;
 }
+
 input:not(:placeholder-shown):invalid {
     border-color: #da3633;
 }
+
 button {
     background: linear-gradient(135deg, #0099ff, #00e5ff);
     color: #0d1117;
@@ -172,15 +192,18 @@ button {
     transition: all 0.3s ease;
     box-shadow: 0 4px 12px rgba(0, 229, 255, 0.3);
 }
+
 button:hover {
     opacity: 0.9;
     box-shadow: 0 6px 20px rgba(0, 229, 255, 0.5);
 }
+
 .form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
 }
+
 .full-width {
     grid-column: span 2;
 }
@@ -198,6 +221,7 @@ button:hover {
     align-items: center;
     z-index: 2000;
 }
+
 .modal-content {
     background: #161b22;
     width: 500px;
@@ -208,6 +232,7 @@ button:hover {
     box-shadow: 0 0 25px rgba(0, 229, 255, 0.5);
     position: relative;
 }
+
 .close-btn {
     position: absolute;
     top: 15px;
@@ -236,4 +261,69 @@ button:hover {
     font-weight: bold;
     box-shadow: 0 4px 15px rgba(0, 229, 255, 0.4);
     z-index: 1000;
+}
+
+
+/* ==========================================
+   МЕДІА-ЗАПИТИ (MEDIA QUERIES) - ЛР3
+   ================================---------- */
+
+/* 1. Медіа-запит для планшетів та малих ноутбуків (до 1024px) */
+@media (max-width: 1024px) {
+    .container {
+        max-width: 90%;
+        padding: 15px;
+    }
+}
+
+/* 2. Медіа-запит для планшетів та великих смартфонів (до 768px) */
+@media (max-width: 768px) {
+    /* Переводимо меню у вертикальний ряд (Flexbox) */
+    nav {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+    }
+
+    body {
+        padding-top: 100px; /* Збільшуємо відступ через дворядкове меню */
+    }
+
+    /* Форми робимо в одну колонку замість двох */
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .full-width {
+        grid-column: span 1;
+    }
+
+    /* Зменшуємо відступи в секціях */
+    .photo-section, form {
+        padding: 15px;
+    }
+}
+
+/* 3. Медіа-запит для мобільних телефонів (до 480px) */
+@media (max-width: 480px) {
+    .photo-card {
+        min-width: 100%; /* Фото-картки займають повну ширину екрана */
+    }
+
+    .float-img {
+        float: none;
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}
+@media (max-width: 768px) {
+    table {
+        width: 100%;
+        word-break: break-word;
+    }
+    th, td {
+        padding: 8px 10px;
+        font-size: 14px;
+    }
 }
