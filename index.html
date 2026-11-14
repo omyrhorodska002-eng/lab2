@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Нікола Тесла — Геній Електрики</title>
+    <!-- Підключаємо зовнішній файл стилів для виконання вимог ЛР3 -->
+    <link rel="stylesheet" href="css/styles.css">
     <style>
         :root {
             --bg-color: #0b0f19;
@@ -17,7 +19,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
+            background: var(--bg-color);
             color: var(--text-main);
             line-height: 1.6;
             max-width: 950px;
@@ -37,7 +39,7 @@
 
         header h1 {
             color: var(--electric-blue);
-            font-size: 2.5em;
+            font-size: clamp(1.8rem, 4vw, 2.5em);
             margin: 0;
             letter-spacing: 2px;
             text-shadow: 0 0 10px var(--electric-glow);
@@ -51,15 +53,27 @@
             margin-bottom: 20px;
         }
 
-        nav a {
+        /* Перевизначаємо фіксовану позицію зі styles.css, щоб меню залишалося в шапці */
+        header nav {
+            position: static;
+            background: transparent;
+            box-shadow: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        header nav a {
             color: var(--electric-blue);
             text-decoration: none;
             font-weight: bold;
-            margin: 0 8px;
+            margin: 0 4px;
             transition: all 0.3s ease;
         }
 
-        nav a:hover {
+        header nav a:hover {
             color: #ffffff;
             text-shadow: 0 0 8px var(--electric-blue);
         }
@@ -112,6 +126,7 @@
             margin-bottom: 5px;
         }
 
+        /* Сітка фото через Grid */
         .photo-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -156,10 +171,17 @@
             font-size: 0.85em;
         }
 
+        /* Контейнер для плавної прокрутки таблиці на вузьких екранах */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-top: 15px;
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 15px;
             background: #0f172a;
         }
 
@@ -193,15 +215,57 @@
 
         footer {
             text-align: center;
-            padding: 20px;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
+            padding: 25px;
+            background: rgba(17, 24, 39, 0.9);
+            border: 1px solid #1f293d;
             border-radius: 10px;
-            color: var(--text-muted);
+            color: #94a3b8;
+            margin-top: 40px;
         }
 
         footer p {
             margin: 5px 0;
+        }
+
+        /* ==========================================
+           АДАПТИВНІСТЬ ДЛЯ МОБІЛЬНИХ ПРИСТРОЇВ
+           ========================================== */
+        @media (max-width: 768px) {
+            body {
+                padding: 12px;
+            }
+
+            section {
+                padding: 16px;
+            }
+
+            /* Приховуємо розділювачі "|" у меню, щоб на телефоні пункти йшли рівно */
+            .nav-divider {
+                display: none;
+            }
+
+            header nav {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            header nav a {
+                display: block;
+                padding: 6px 12px;
+                background: rgba(0, 216, 255, 0.08);
+                border-radius: 6px;
+                width: 100%;
+            }
+
+            /* Фіксуємо нормальну ширину таблиці всередині контейнера прокрутки */
+            table {
+                min-width: 520px;
+            }
+
+            th, td {
+                padding: 10px;
+                font-size: 14px;
+            }
         }
     </style>
 </head>
@@ -211,11 +275,11 @@
         <h1>НІКОЛА ТЕСЛА</h1>
         <p class="subtitle">людина, яка навчила електрику працювати на майбутнє.</p>
         <nav>
-            <a href="index.html">ГОЛОВНА</a> | 
-            <a href="#story">СЮЖЕТ</a> | 
-            <a href="#inventions">ВИНАХОДИ</a> | 
-            <a href="#photos">ФОТО</a> | 
-            <a href="#awards">НАГОРОДИ</a> | 
+            <a href="index.html">ГОЛОВНА</a><span class="nav-divider"> | </span>
+            <a href="#story">СЮЖЕТ</a><span class="nav-divider"> | </span>
+            <a href="#inventions">ВИНАХОДИ</a><span class="nav-divider"> | </span>
+            <a href="#photos">ФОТО</a><span class="nav-divider"> | </span>
+            <a href="#awards">НАГОРОДИ</a><span class="nav-divider"> | </span>
             <a href="contact.html">ФОРМИ ТА ЗВ'ЯЗОК</a>
         </nav>
     </header>
@@ -228,7 +292,7 @@
                 <br><cite>— Нікола Тесла</cite>
             </blockquote>
             <p><strong>Нікола Тесла — справжній геній, чиї винаходи назавжди змінили хід історії.</strong> Його ідеї набагато випередили свій час, тому Теслі приписували найрізноманітніші властивості. Доходило навіть до звинувачень у чаклунстві! На щастя, часи, коли подібні звинувачення були приводом для спалення на багатті, на той момент уже минули. Проте численні загадки, пов'язані з Теслою, досі хвилюють розуми багатьох людей.</p>
-            <p>Видатний винахідник та інженер, яким Ніколу Теслу вважають зараз, своего часу був звичайним хлопчиком, молодшим сином у родині сербів. На нього не покладали особливих надій, але доля розпорядилася по-своєму: старший брат Ніколи трагічно загинув. Тепер молодший син мав не розчарувати свого батька, і Нікола з острахом думав про те, що йому уготована доля священика.</p>
+            <p>Видатний винахідник та інженер, яким Ніколу Теслу вважають зараз, свого часу був звичайним хлопчиком, молодшим сином у родині сербів. На нього не покладали особливих надій, але доля розпорядилася по-своєму: старший брат Ніколи трагічно загинув. Тепер молодший син мав не розчарувати свого батька, і Нікола з острахом думав про те, що йому уготована доля священика.</p>
         </section>
 
         <section id="inventions">
@@ -262,7 +326,6 @@
             </ol>
         </section>
 
-        
         <section id="photos">
             <h2>ФОТО</h2>
             <div class="photo-grid">
@@ -304,43 +367,44 @@
 
         <section id="awards">
             <h2>НАГОРОДИ</h2>
-            <table>
-                <caption>Офіційні ордени та визнання Ніколи Тесли</caption>
-                <thead>
-                    <tr>
-                        <th>Рік</th>
-                        <th>Нагорода / Подія</th>
-                        <th>Країна / Організація</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>1892</td><td>Великий офіцер ордена Святого Сави</td><td>Сербія</td></tr>
-                    <tr><td>1895</td><td>Великий хрест ордена князя Данила I</td><td>Чорногорія</td></tr>
-                    <tr><td>1915</td><td>Чутки про Нобелівську премію з фізики (разом із Т. Едісоном) — <em>не нагороджено</em></td><td>Reuters / Стокгольм</td></tr>
-                    <tr><td>1917</td><td>Медаль Едісона від AIEE</td><td>США</td></tr>
-                    <tr><td>1926</td><td>Великий хрест ордена Святого Сави</td><td rowspan="2">Югославія</td></tr>
-                    <tr><td>1931</td><td>Хрест ордена Югославської корони</td></tr>
-                    <tr><td>1934</td><td>Медаль Джона Скотта</td><td>Інститут Франкліна, США</td></tr>
-                    <tr><td rowspan="2">1937</td><td>Великий хрест ордена Білого лева</td><td>Чехословаччина</td></tr>
-                    <tr><td>Медаль Паризького університету</td><td>Франція</td></tr>
-                    <tr><td>1939</td><td>Медаль Софійського університету імені Св. Климента Охридського</td><td>Болгарія</td></tr>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="2"><strong>Загальна кількість офіційних нагород:</strong></td>
-                        <td><strong>9 відзнак</strong></td>
-                    </tr>
-                </tfoot>
-            </table>
+            <div class="table-responsive">
+                <table>
+                    <caption>Офіційні ордени та визнання Ніколи Тесли</caption>
+                    <thead>
+                        <tr>
+                            <th>Рік</th>
+                            <th>Нагорода / Подія</th>
+                            <th>Країна / Організація</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1892</td><td>Великий офіцер ордена Святого Сави</td><td>Сербія</td></tr>
+                        <tr><td>1895</td><td>Великий хрест ордена князя Данила I</td><td>Чорногорія</td></tr>
+                        <tr><td>1915</td><td>Чутки про Нобелівську премію з фізики (разом із Т. Едісоном) — <em>не нагороджено</em></td><td>Reuters / Стокгольм</td></tr>
+                        <tr><td>1917</td><td>Медаль Едісона від AIEE</td><td>США</td></tr>
+                        <tr><td>1926</td><td>Великий хрест ордена Святого Сави</td><td rowspan="2">Югославія</td></tr>
+                        <tr><td>1931</td><td>Хрест ордена Югославської корони</td></tr>
+                        <tr><td>1934</td><td>Медаль Джона Скотта</td><td>Інститут Франкліна, США</td></tr>
+                        <tr><td rowspan="2">1937</td><td>Великий хрест ордена Білого лева</td><td>Чехословаччина</td></tr>
+                        <tr><td>Медаль Паризького університету</td><td>Франція</td></tr>
+                        <tr><td>1939</td><td>Медаль Софійського університету імені Св. Климента Охридського</td><td>Болгарія</td></tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2"><strong>Загальна кількість офіційних нагород:</strong></td>
+                            <td><strong>9 відзнак</strong></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
         </section>
     </main>
 
-
-    <footer id="contacts" style="text-align: center; padding: 25px; background: rgba(17, 24, 39, 0.9); border: 1px solid #1f293d; border-radius: 10px; color: #94a3b8; margin-top: 40px;">
-    <p>© 2026 Студентка Ольга. Усі права захищено.</p>
-    <p style="margin-top: 8px;">
-        mob. +38 (063) 412-89-77 &nbsp;|&nbsp; email: student.olga.dev@gmail.com &nbsp;|&nbsp; Telegram: olya_code
-    </p>
-</footer>
+    <footer id="contacts">
+        <p>© 2026 Студентка Ольга. Усі права захищено.</p>
+        <p style="margin-top: 8px;">
+            mob. +38 (063) 412-89-77  |  email: student.olga.dev@gmail.com  |  Telegram: olya_code
+        </p>
+    </footer>
 </body>
 </html>
