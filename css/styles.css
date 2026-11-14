@@ -286,13 +286,12 @@ button:hover {
         text-align: center;
     }
 
-    /* Прибираємо зайві вертикальні риски або розриви у меню на мобільних */
     nav br {
         display: none;
     }
 
     body {
-        padding-top: 130px; /* Збільшуємо відступ зверху під висоту багаторядкового меню */
+        padding-top: 130px;
     }
 
     /* Форми робимо в одну колонку замість двох */
@@ -304,19 +303,20 @@ button:hover {
         grid-column: span 1;
     }
 
-    /* Зменшуємо відступи в секціях */
     .photo-section, form {
         padding: 15px;
     }
 
-    /* Адаптивність таблиць */
+    /* Адаптивність таблиць з горизонтальною прокруткою */
     table {
         width: 100%;
-        word-break: break-word;
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
     }
     
     th, td {
-        padding: 8px 10px;
+        padding: 10px 12px;
         font-size: 14px;
     }
 }
@@ -324,7 +324,7 @@ button:hover {
 /* 3. Медіа-запит для мобільних телефонів (до 480px) */
 @media (max-width: 480px) {
     .photo-card {
-        min-width: 100%; /* Фото-картки займають повну ширину екрана */
+        min-width: 100%;
     }
 
     .float-img {
